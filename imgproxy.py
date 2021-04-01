@@ -7,7 +7,7 @@ import hmac
 from typing import Literal, Union, Optional
 
 
-__version__ = '0.0.0'
+__version__ = '0.1.0'
 
 
 @dc.dataclass
