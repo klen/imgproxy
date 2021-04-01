@@ -12,6 +12,17 @@
 * Support for [advanced](https://docs.imgproxy.net/#/generating_the_url_advanced) urls
 * Support for [signing](https://docs.imgproxy.net/#/signing_the_url) urls
 
+# Table of Contents
+
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Advanced options](#advanced-options)
+* [Signed URLs](#signed-urls)
+* [Bug tracker](#bug-tracker)
+* [Contributing](#contributing)
+* [License](#license)
+
 
 ## Requirements
 
