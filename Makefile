@@ -15,3 +15,27 @@ t test: $(VIRTUAL_ENV)
 .PHONY: mypy
 mypy: $(VIRTUAL_ENV)
 	@$(VIRTUAL_ENV)/bin/mypy imgproxy.py
+
+VERSION	?= minor
+
+.PHONY: version
+version: $(VIRTUAL_ENV)
+	bump2version $(VERSION)
+	git checkout master
+	git pull
+	git merge develop
+	git checkout develop
+	git push origin develop master
+	git push --tags
+
+.PHONY: minor
+minor:
+	make version VERSION=minor
+
+.PHONY: patch
+patch:
+	make version VERSION=patch
+
+.PHONY: major
+major:
+	make version VERSION=major
