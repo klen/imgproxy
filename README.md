@@ -2,11 +2,11 @@
 
 **ImgProxy** -- Python library to build [ImgProxy](https://docs.imgproxy.net/)
 
-[![Tests Status](https://github.com/klen/asgi-tools/workflows/tests/badge.svg)](https://github.com/klen/asgi-tools/actions)
+[![Tests Status](https://github.com/klen/imgproxy/workflows/tests/badge.svg)](https://github.com/klen/imgproxy/actions)
 
-[![PYPI Version](https://img.shields.io/pypi/v/asgi-tools)](https://pypi.org/project/asgi-tools/)
+[![PYPI Version](https://img.shields.io/pypi/v/imgproxy)](https://pypi.org/project/imgproxy/)
 
-[![Python Versions](https://img.shields.io/pypi/pyversions/asgi-tools)](https://pypi.org/project/asgi-tools/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/imgproxy)](https://pypi.org/project/imgproxy/)
 
 ---
 
