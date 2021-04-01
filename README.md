@@ -14,14 +14,15 @@
 
 # Table of Contents
 
-* [Requirements](#requirements)
-* [Installation](#installation)
-* [Usage](#usage)
+  * [Requirements](#requirements)
+  * [Installation](#installation)
+  * [Usage](#usage)
     * [Advanced options](#advanced-options)
     * [Signed URLs](#signed-urls)
-* [Bug tracker](#bug-tracker)
-* [Contributing](#contributing)
-* [License](#license)
+    * [Image factories](#image-factories)
+  * [Bug tracker](#bug-tracker)
+  * [Contributing](#contributing)
+  * [License](#license)
 
 
 ## Requirements
