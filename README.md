@@ -11,6 +11,7 @@
 * Support for [basic](https://docs.imgproxy.net/#/generating_the_url_basic) urls
 * Support for [advanced](https://docs.imgproxy.net/#/generating_the_url_advanced) urls
 * Support for [signing](https://docs.imgproxy.net/#/signing_the_url) urls
+* URL's Factories with predefined params
 
 # Table of Contents
 
@@ -103,7 +104,7 @@ using, for example, the following snippet:
 
 ### Image factories
 
-Usually imgproxy host and signature params is common for a project.
+Usually imgproxy host and signature params are common for a project.
 The library supports a method to generate a factory with predefined params:
 
 ```python
