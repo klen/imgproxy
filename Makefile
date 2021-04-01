@@ -39,3 +39,9 @@ patch:
 .PHONY: major
 major:
 	make version VERSION=major
+
+.PHONY: upload
+# target: upload - Upload module on PyPi
+upload: $(VIRTUAL_ENV)
+	@python setup.py bdist_wheel
+	@twine upload dist/*
