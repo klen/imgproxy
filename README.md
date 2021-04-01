@@ -1,16 +1,16 @@
 # ImgProxy
 
-**ImgProxy** -- Python library to build [ImgProxy](https://docs.imgproxy.net/)
+**ImgProxy** -- Python library to build [ImgProxy](https://docs.imgproxy.net/) URLs
 
-[![Tests Status](https://github.com/klen/imgproxy/workflows/tests/badge.svg)](https://github.com/klen/imgproxy/actions)
-
-[![PYPI Version](https://img.shields.io/pypi/v/imgproxy)](https://pypi.org/project/imgproxy/)
-
-[![Python Versions](https://img.shields.io/pypi/pyversions/imgproxy)](https://pypi.org/project/imgproxy/)
+[![Tests Status](https://github.com/klen/imgproxy/workflows/tests/badge.svg)](https://github.com/klen/imgproxy/actions) [![PYPI Version](https://img.shields.io/pypi/v/imgproxy)](https://pypi.org/project/imgproxy/) [![Python Versions](https://img.shields.io/pypi/pyversions/imgproxy)](https://pypi.org/project/imgproxy/)
 
 ---
 
 ## Features
+
+* Support for [basic](https://docs.imgproxy.net/#/generating_the_url_basic) urls
+* Support for [advanced](https://docs.imgproxy.net/#/generating_the_url_advanced) urls
+* Support for [signing](https://docs.imgproxy.net/#/signing_the_url) urls
 
 
 ## Requirements
