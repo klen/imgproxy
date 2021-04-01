@@ -5,6 +5,7 @@ import dataclasses as dc
 import hashlib
 import hmac
 from typing import Literal, Union, Optional
+from functools import partial
 
 
 __version__ = '0.1.5'
@@ -26,6 +27,11 @@ class ImgProxy:
         Literal['no', 'so', 'ea', 'we', 'noea', 'nowe', 'soea', 'sowe', 'ce', 'sm'], str] = 'ce'
     enlarge: bool = False
     extension: str = ''
+
+    @classmethod
+    def factory(cls, **kwargs):
+        """Generate ImgProxy objects."""
+        return partial(cls, **kwargs)
 
     def __post_init__(self):
         """Initialize signature options."""
@@ -55,14 +61,14 @@ class ImgProxy:
             )
 
         else:
-            path = "{resizing_type}/{width}/{height}/{gravity}/{enlarge}/{b64_url}.{extension}".format(  # noqa
+            path = "{resizing_type}/{width}/{height}/{gravity}/{enlarge}/{b64_url}{extension}".format(  # noqa
                 b64_url=b64_url, **dict({
                     'resizing_type': self.resizing_type,
                     'width': self.width,
                     'height': self.height,
                     'gravity': self.gravity,
                     'enlarge': self.enlarge and '1' or '0',
-                    'extension': self.extension,
+                    'extension': self.extension and f".{self.extension}" or '',
                 }, **options)
             )
 

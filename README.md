@@ -53,12 +53,12 @@ is easy to use but doesn’t support the whole range of imgproxy features:
     # or just call it to get imgproxy URL
     cover: str = url()
 
-    assert cover == 'https://imgproxy.com/insecure/auto/800/400/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA.'
+    assert cover == 'https://imgproxy.com/insecure/auto/800/400/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 
     # Call the object with different params to customize the url
     cover_small: str = url(width=400, height=200, resizing_type='fill')
 
-    assert cover_small == 'https://imgproxy.com/insecure/fill/400/200/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA.'
+    assert cover_small == 'https://imgproxy.com/insecure/fill/400/200/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 
 ```
 
@@ -90,7 +90,7 @@ image resizes.
 
     url = ImgProxy('https://picsum.photos/1000', proxy_host='https://imgproxy.com', key="aa396160c50ea766910eab53", salt="b3fb8f215827bda5d0e7313d")
 
-    assert str(url) == 'https://imgproxy.com/O0oYB8hKuQitvxu-WJuvSReEAnL-G2-fbGsb8m_Iiv4/auto/0/0/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA.'
+    assert str(url) == 'https://imgproxy.com/-YNDbmoa34gFOv79aRKmlXHxGNlHn0yDv111VZ5HAxo/auto/0/0/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 ```
 
 If you need a random key/salt pair real fast, you can quickly generate it
@@ -100,6 +100,31 @@ using, for example, the following snippet:
     echo $(xxd -g 2 -l 64 -p /dev/random | tr -d '\n')
 ```
 
+### Image factories
+
+Usually imgproxy host and signature params is common for a project.
+The library supports a method to generate a factory with predefined params:
+
+```python
+    from imgproxy import ImgProxy
+
+    img_factory = ImgProxy.factory(proxy_host='https://imgproxy.com', key="aa396160c50ea766910eab53", salt="b3fb8f215827bda5d0e7313d")
+
+    # ...
+
+    # Generate image URL
+    url = img_factory('https://picsum.photos/1000', width=600)
+    assert str(url) == 'https://imgproxy.com/11ZRY6Zmms1m4O4sCiY7Km2pKH3KPTELS-YYgSGgWKA/auto/600/0/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
+```
+
+Users able to predifine any basic params:
+```python
+
+    thumbnail_factory = ImgProxy.factory(proxy_host='https://imgproxy.com', width=300, height=200)
+    preview_factory = ImgProxy.factory(proxy_host='https://imgproxy.com', width=500, resizing_type='fit')
+
+    # and etc
+```
 
 
 ## Bug tracker
