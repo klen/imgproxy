@@ -49,7 +49,7 @@ class ImgProxy:
         """Generate an URL."""
         b64_url = base64.urlsafe_b64encode(self.image_url.encode()).rstrip(b"=").decode()
         if advanced:
-            path = "{advanced}/g:{gravity}/rs:{resizing_type}:{width}:{height}:{enlarge}/{b64_url}{extension}".format(  # noqa
+            path = "/{advanced}/g:{gravity}/rs:{resizing_type}:{width}:{height}:{enlarge}/{b64_url}{extension}".format(  # noqa
                 b64_url=b64_url, advanced='/'.join(advanced), **dict({
                     'resizing_type': self.resizing_type,
                     'width': self.width,
@@ -61,7 +61,7 @@ class ImgProxy:
             )
 
         else:
-            path = "{resizing_type}/{width}/{height}/{gravity}/{enlarge}/{b64_url}{extension}".format(  # noqa
+            path = "/{resizing_type}/{width}/{height}/{gravity}/{enlarge}/{b64_url}{extension}".format(  # noqa
                 b64_url=b64_url, **dict({
                     'resizing_type': self.resizing_type,
                     'width': self.width,
@@ -75,11 +75,11 @@ class ImgProxy:
         signature = 'insecure'
         if self.key and self.salt:
             digest = hmac.new(
-                self.key, msg=self.salt + path.encode(),  # type: ignore
+                self.key, msg=self.salt + path.encode('utf-8'),  # type: ignore
                 digestmod=hashlib.sha256).digest()
             signature = base64.urlsafe_b64encode(digest).rstrip(b"=").decode()
 
-        path = f"/{signature}/{path}"
+        path = f"/{signature}{path}"
         if self.proxy_host:
             return f"{self.proxy_host}{path}"
 

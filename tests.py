@@ -16,7 +16,7 @@ def test_signed():
         key="aa396160c50ea766910eab53",
         salt="b3fb8f215827bda5d0e7313d")
     assert url
-    assert str(url) == '/-YNDbmoa34gFOv79aRKmlXHxGNlHn0yDv111VZ5HAxo/auto/0/0/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
+    assert str(url) == '/0RKUR3IDpOKgKQI302s9EymkXxU4jXqguj-ZXZskotA/auto/0/0/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 
 
 def test_advanced():
@@ -51,6 +51,6 @@ def test_readme():
 
     img_factory = ImgProxy.factory(proxy_host='https://imgproxy.com', key="aa396160c50ea766910eab53", salt="b3fb8f215827bda5d0e7313d")
     url = img_factory('https://picsum.photos/1000', width=600)
-    assert str(url) == 'https://imgproxy.com/11ZRY6Zmms1m4O4sCiY7Km2pKH3KPTELS-YYgSGgWKA/auto/600/0/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
+    assert str(url) == 'https://imgproxy.com/j_m92DjIqILHbwlArgEFam01MJQRhKBjorFpDc5IOMc/auto/600/0/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 
 # pylama:ignore=E501

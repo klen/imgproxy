@@ -40,8 +40,15 @@ patch:
 major:
 	make version VERSION=major
 
+.PHONY: clean
+# target: clean - Display callable targets
+clean:
+	rm -rf build/ dist/ docs/_build *.egg-info
+	find $(CURDIR) -name "*.py[co]" -delete
+	find $(CURDIR)/$(MODULE) -name "__pycache__" | xargs rm -rf
+
 .PHONY: upload
 # target: upload - Upload module on PyPi
-upload: $(VIRTUAL_ENV)
+upload: clean $(VIRTUAL_ENV)
 	@python setup.py bdist_wheel
 	@twine upload dist/*
