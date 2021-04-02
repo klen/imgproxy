@@ -8,7 +8,7 @@ from typing import Literal, Union, Optional
 from functools import partial
 
 
-__version__ = '0.2.2'
+__version__ = '0.2.3'
 
 
 @dc.dataclass
