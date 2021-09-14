@@ -2,13 +2,14 @@
 
 **ImgProxy** -- Python library to build [ImgProxy](https://docs.imgproxy.net/) URLs
 
-[![Tests Status](https://github.com/klen/imgproxy/workflows/tests/badge.svg)](https://github.com/klen/imgproxy/actions) [![PYPI Version](https://img.shields.io/pypi/v/imgproxy)](https://pypi.org/project/imgproxy/) [![Python Versions](https://img.shields.io/pypi/pyversions/imgproxy)](https://pypi.org/project/imgproxy/)
+[![Tests Status](https://github.com/klen/imgproxy/workflows/tests/badge.svg)](https://github.com/klen/imgproxy/actions)
+[![PYPI Version](https://img.shields.io/pypi/v/imgproxy)](https://pypi.org/project/imgproxy/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/imgproxy)](https://pypi.org/project/imgproxy/)
 
 ---
 
 ## Features
 
-* Support for [basic](https://docs.imgproxy.net/#/generating_the_url_basic) urls
 * Support for [advanced](https://docs.imgproxy.net/#/generating_the_url_advanced) urls
 * Support for [signing](https://docs.imgproxy.net/#/signing_the_url) urls
 * URL's Factories with predefined params
@@ -21,6 +22,7 @@
     * [Advanced options](#advanced-options)
     * [Signed URLs](#signed-urls)
     * [Image factories](#image-factories)
+  * [Changelog](#changelog)
   * [Bug tracker](#bug-tracker)
   * [Contributing](#contributing)
   * [License](#license)
@@ -35,13 +37,10 @@
 
 **imgproxy** should be installed using pip:
 
-    pip install imgproxy
+    $ pip install imgproxy
 
 
 ## Usage
-
-[Simple](https://docs.imgproxy.net/#/generating_the_url_basic) URL format that
-is easy to use but doesn’t support the whole range of imgproxy features:
 
 ```python
     from imgproxy import ImgProxy
@@ -55,25 +54,12 @@ is easy to use but doesn’t support the whole range of imgproxy features:
     # or just call it to get imgproxy URL
     cover: str = url()
 
-    assert cover == 'https://imgproxy.com/insecure/auto/800/400/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
+    assert cover == 'https://imgproxy.com/insecure/g:ce/rs:auto:800:400:0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 
     # Call the object with different params to customize the url
     cover_small: str = url(width=400, height=200, resizing_type='fill')
 
-    assert cover_small == 'https://imgproxy.com/insecure/fill/400/200/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
-
-```
-
-### Advanced options
-
-[Advanced](https://docs.imgproxy.net/#/generating_the_url_advanced) URL format
-allows the use of all the imgproxy features ():
-
-```python
-    from imgproxy import ImgProxy
-
-    # Create ImgProxy object with required params
-    url = ImgProxy('https://picsum.photos/1000', proxy_host='https://imgproxy.com')
+    assert cover_small == 'https://imgproxy.com/insecure/g:ce/rs:fill:400:200:0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 
     # Call it with advanced params to get an URL
     cover_with_border = url('pd:10:10:10:10', 'bg:F00')
@@ -92,7 +78,7 @@ image resizes.
 
     url = ImgProxy('https://picsum.photos/1000', proxy_host='https://imgproxy.com', key="aa396160c50ea766910eab53", salt="b3fb8f215827bda5d0e7313d")
 
-    assert str(url) == 'https://imgproxy.com/-YNDbmoa34gFOv79aRKmlXHxGNlHn0yDv111VZ5HAxo/auto/0/0/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
+    assert str(url) == 'https://imgproxy.com/FrH21u_5bXmv-OJ0APMayxZ0F3982xx437gCpqcQ0BM/g:ce/rs:auto:600:0:0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 ```
 
 If you need a random key/salt pair real fast, you can quickly generate it
@@ -116,7 +102,7 @@ The library supports a method to generate a factory with predefined params:
 
     # Generate image URL
     url = img_factory('https://picsum.photos/1000', width=600)
-    assert str(url) == 'https://imgproxy.com/j_m92DjIqILHbwlArgEFam01MJQRhKBjorFpDc5IOMc/auto/600/0/ce/0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
+    assert str(url) == 'https://imgproxy.com/FrH21u_5bXmv-OJ0APMayxZ0F3982xx437gCpqcQ0BM/g:ce/rs:auto:600:0:0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 ```
 
 Users able to predifine any basic params:
@@ -127,6 +113,11 @@ Users able to predifine any basic params:
 
     # and etc
 ```
+
+## Changelog
+
+- 2021-09-14: (0.3.0) Basic format has been removed (it's depricated in ImgProxy)
+- 2021-04-02: (0.2.3) Stable release
 
 
 ## Bug tracker
