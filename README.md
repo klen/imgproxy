@@ -30,7 +30,7 @@
 
 ## Requirements
 
-* python >= 3.8
+* python >= 3.7
 
 
 ## Installation
@@ -116,8 +116,11 @@ Users able to predifine any basic params:
 
 ## Changelog
 
-- 2021-09-14: (0.3.0) Basic format has been removed (it's depricated in ImgProxy)
-- 2021-04-02: (0.2.3) Stable release
+* 2021-09-14: **[0.4.0]**
+    - Support python 3.7
+    - Basic format has been removed (it's depricated in ImgProxy)
+
+* 2021-04-02: **[0.2.3]** Stable release
 
 
 ## Bug tracker

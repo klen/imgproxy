@@ -4,8 +4,14 @@ import base64
 import dataclasses as dc
 import hashlib
 import hmac
-from typing import Literal, Union, Optional
+from typing import Union, Optional
 from functools import partial
+
+# py37
+try:
+    from typing import Literal  # type: ignore
+except ImportError:
+    from typing_extensions import Literal  # type: ignore
 
 
 __version__ = '0.3.0'
