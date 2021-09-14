@@ -14,7 +14,7 @@ except ImportError:
     from typing_extensions import Literal  # type: ignore
 
 
-__version__ = '0.3.0'
+__version__ = '0.4.0'
 
 
 @dc.dataclass
