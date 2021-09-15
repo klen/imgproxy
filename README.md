@@ -102,7 +102,7 @@ The library supports a method to generate a factory with predefined params:
 
     # Generate image URL
     url = img_factory('https://picsum.photos/1000', width=600)
-    assert str(url) == 'https://imgproxy.com/FrH21u_5bXmv-OJ0APMayxZ0F3982xx437gCpqcQ0BM/g:ce/rs:auto:600:0:0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
+    assert str(url) == 'https://imgproxy.com/qcKAFfBJwpiKZ6xt-NT6GXGOGizkeq4sgyfoQ4h-080/g:ce/rs:auto:600:0:0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 ```
 
 Users able to predifine any basic params:

@@ -63,7 +63,7 @@ class ImgProxy:
                 'enlarge': self.enlarge and '1' or '0',
                 'extension': self.extension and f".{self.extension}" or '',
             }, **options)
-        ).lstrip('/')
+        ).replace('//', '/')
 
         signature = 'insecure'
         if self.key and self.salt:
@@ -72,7 +72,7 @@ class ImgProxy:
                 digestmod=hashlib.sha256).digest()
             signature = base64.urlsafe_b64encode(digest).rstrip(b"=").decode()
 
-        path = f"/{signature}/{path}"
+        path = f"/{signature}{path}"
         if self.proxy_host:
             return f"{self.proxy_host}{path}"
 
