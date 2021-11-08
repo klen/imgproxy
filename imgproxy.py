@@ -4,7 +4,7 @@ import base64
 import dataclasses as dc
 import hashlib
 import hmac
-from typing import Union, Optional
+from typing import Union, Optional, Sequence
 from functools import partial
 
 # py37
@@ -33,11 +33,18 @@ class ImgProxy:
         Literal['no', 'so', 'ea', 'we', 'noea', 'nowe', 'soea', 'sowe', 'ce', 'sm'], str] = 'ce'
     enlarge: bool = False
     extension: str = ''
+    advanced : Sequence[str] = dc.field(default_factory=list)
 
     @classmethod
-    def factory(cls, **kwargs):
+    def factory(cls, *f_advanced: str, **f_params):
         """Generate ImgProxy objects."""
-        return partial(cls, **kwargs)
+
+        def factory(image_url: str, *advanced: str, **params):
+            kwargs = dict(f_params, **params)
+            kwargs['advanced'] = [*kwargs.get('advanced', []), *f_advanced, *advanced]
+            return cls(image_url, **kwargs)
+
+        return factory
 
     def __post_init__(self):
         """Initialize signature options."""
@@ -55,7 +62,7 @@ class ImgProxy:
         """Generate an URL."""
         b64_url = base64.urlsafe_b64encode(self.image_url.encode()).rstrip(b"=").decode()
         path = "/{advanced}/g:{gravity}/rs:{resizing_type}:{width}:{height}:{enlarge}/{b64_url}{extension}".format(  # noqa
-            b64_url=b64_url, advanced='/'.join(advanced), **dict({
+            b64_url=b64_url, advanced='/'.join([*self.advanced, *advanced]), **dict({
                 'resizing_type': self.resizing_type,
                 'width': self.width,
                 'height': self.height,

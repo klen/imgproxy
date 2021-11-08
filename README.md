@@ -19,7 +19,7 @@
   * [Requirements](#requirements)
   * [Installation](#installation)
   * [Usage](#usage)
-    * [Advanced options](#advanced-options)
+    * [Options](#options)
     * [Signed URLs](#signed-urls)
     * [Image factories](#image-factories)
   * [Changelog](#changelog)
@@ -46,25 +46,54 @@
     from imgproxy import ImgProxy
 
     # Create ImgProxy object with required params
-    url = ImgProxy('https://picsum.photos/1000', proxy_host='https://imgproxy.com', width=800, height=400)
+    img_url = ImgProxy('https://picsum.photos/1000', proxy_host='https://imgproxy.com', width=800, height=400)
 
     # Convert the obj to string to get imgproxy URL
-    cover: str = str(url)
+    cover: str = str(img_url)
 
     # or just call it to get imgproxy URL
-    cover: str = url()
+    cover: str = img_url()
 
     assert cover == 'https://imgproxy.com/insecure/g:ce/rs:auto:800:400:0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 
     # Call the object with different params to customize the url
-    cover_small: str = url(width=400, height=200, resizing_type='fill')
+    cover_small: str = img_url(width=400, height=200, resizing_type='fill')
 
     assert cover_small == 'https://imgproxy.com/insecure/g:ce/rs:fill:400:200:0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 
     # Call it with advanced params to get an URL
-    cover_with_border = url('pd:10:10:10:10', 'bg:F00')
+    cover_with_border = img_url('pd:10:10:10:10', 'bg:F00')
     assert cover_with_border == 'https://imgproxy.com/insecure/pd:10:10:10:10/bg:F00/g:ce/rs:auto:0:0:0/aHR0cHM6Ly9waWNzdW0ucGhvdG9zLzEwMDA'
 
+```
+
+### Options
+
+Basic options (default values):
+
+* `width: int = 0` - images width
+* `height: int = 0` - images height
+* `gravity: str = 'ce'` - images gravity
+* `enlarge: bool = False` - enlarge an image
+* `extension: str = ''` - images extension
+* `resizing_type: str = 'auto'` - resizing type
+
+```python
+    from imgproxy import ImgProxy
+
+    img_url = ImgProxy('https://picsum.photos/1000', proxy_host='https://imgproxy.com')
+    thumbmail = img_url(width=100, height=100, gravity='no', extension='jpg', enlarge=True, resizing_type='fit')
+```
+
+Any other options are also supported when you call an imageproxy instance:
+
+```python
+    from imgproxy import ImgProxy
+
+    img_url = ImgProxy('https://picsum.photos/1000', proxy_host='https://imgproxy.com')
+
+    # Get rotated and blured image
+    blured_rotated = img_url('blur:0.5', 'rotate:30')
 ```
 
 ### Signed URLs
@@ -114,7 +143,17 @@ Users able to predifine any basic params:
     # and etc
 ```
 
+Advanced params are also supported:
+
+```python
+    thumbnail_factory = ImgProxy.factory('bg:F00', 'pd:10:10:10:10', proxy_host='https://imgproxy.com', width=300, height=200)
+```
+
 ## Changelog
+
+* 2021-11-08: **[1.0.0]**
+    - Support python 3.10
+    - Support advanced options in factories
 
 * 2021-09-14: **[0.4.0]**
     - Support python 3.7
