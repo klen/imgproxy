@@ -10,7 +10,7 @@
 
 ## Features
 
-* Support for [advanced](https://docs.imgproxy.net/#/generating_the_url_advanced) urls
+* Generates [URLs](https://docs.imgproxy.net/generating_the_url) urls
 * Support for [signing](https://docs.imgproxy.net/#/signing_the_url) urls
 * URL's Factories with predefined params
 
